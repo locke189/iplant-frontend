@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DeviceComponent } from './device/device.component';
 import { ListComponent } from './shared/list/list.component';
-import { DetailsComponent } from './shared/details/details.component';
+import { DetailsComponent } from './device/details/details.component';
+import { DataComponent } from './device/data/data.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DetailsComponent } from './shared/details/details.component';
     HeaderComponent,
     DeviceComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
