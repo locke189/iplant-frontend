@@ -2,13 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DeviceComponent } from './device/device.component';
-import { ListComponent } from './shared/list/list.component';
+import { ListComponent } from './device/list/list.component';
 import { DetailsComponent } from './device/details/details.component';
 import { DataComponent } from './device/data/data.component';
+import { HttpService } from './services/http.service';
+import { DataService } from './services/data.service';
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: 'AIzaSyCeLjnaoNZ6c9BKkccXt5E0H74DGKJWXek',
+  authDomain: 'testproject-cd274.firebaseapp.com',
+  databaseURL: 'https://testproject-cd274.firebaseio.com',
+  storageBucket: 'testproject-cd274.appspot.com'
+};
 
 @NgModule({
   declarations: [
@@ -22,9 +33,10 @@ import { DataComponent } from './device/data/data.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [HttpService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
