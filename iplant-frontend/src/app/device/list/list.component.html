@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{title}}</h3>
+  </div>
+  <div class="panel-body">
+    {{textContent}}
+  </div>
+  <div class="list-group" *ngFor="let device of devices">
+    <a href="#" class="list-group-item">ID: {{device.deviceId}} - {{device.type}}</a>
+  </div>
+</div>
