@@ -2,21 +2,28 @@
   <div class="panel-heading">
     <h3 class="panel-title">My Device</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" *ngIf="deviceId">
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="http://placehold.it/242x200" alt="...">
+          <img [src]="device.image" height="200" width="242" alt="...">
         </div>
       </div>
       <div class="col-sm-6 col-md-8">
-        <h3><b>Device ID</b> - 001</h3>
-        <p><b>Status:</b> Online</p>
-        <p><b>Type:</b> iPlant moisture</p>
-        <p><b>Version:</b> V0.1</p>
-        <p><b>Sensors:</b> Moisture</p>
-        <p><b>Actuators:</b> N/A</p>
-        <p><b>Last update:</b> Today</p>
+        <h3><b>Device ID</b> - {{device.deviceId}} </h3>
+        <p><b>Status:</b> {{device.status}}</p>
+        <p><b>Type:</b> {{device.type}}</p>
+        <p><b>Version:</b> {{device.version}}</p>
+        <p><b>Sensors:</b> {{device.sensorTextList}}</p>
+        <p><b>Actuators:</b> {{device.actuatorTextList}}</p>
+        <p><b>Last update:</b> {{device.timestamp}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" *ngIf="!deviceId">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <h3>Please select a device from the list...</h3>
       </div>
     </div>
   </div>

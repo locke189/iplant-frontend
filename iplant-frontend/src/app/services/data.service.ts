@@ -11,7 +11,6 @@ deviceList: Device[] = [];
 
   addDevice(device: Device) {
     const index = this.deviceList.findIndex( (element) => element.deviceId === device.deviceId);
-    console.log('index : ' + index);
     if (index === -1) {
       this.deviceList.push(device);
     } else {

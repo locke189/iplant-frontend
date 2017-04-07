@@ -6,6 +6,6 @@
     {{textContent}}
   </div>
   <div class="list-group" *ngFor="let device of devices">
-    <a href="#" class="list-group-item">ID: {{device.deviceId}} - {{device.type}}</a>
+    <a href="#" class="list-group-item" (click)="selectDevice(device)" >ID: {{device.deviceId}} - {{device.type}}</a>
   </div>
 </div>

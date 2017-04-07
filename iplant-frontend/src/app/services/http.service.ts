@@ -12,7 +12,6 @@ export class HttpService {
 
   constructor(af: AngularFire, private dataService: DataService) {
     this.query = af.database.list('/devices/');
-    console.log(this.query);
 
     // subscribe to changes
     this.query.subscribe(queriedItems => {

@@ -7,18 +7,20 @@
   </div>
 
   <!-- Table -->
-  <table class="table">
+  <table class="table" *ngIf="device">
     <tr>
       <th>Sensor</th>
       <th>ID</th>
       <th>Timestamp</th>
       <th>Value</th>
     </tr>
-    <tr>
-      <td>MST</td>
-      <td>001</td>
-      <td>Today</td>
-      <td>50%</td>
+
+    <tr *ngFor="let sensor of device.sensors">
+      <td>{{sensor.type}}</td>
+      <td>{{sensor.sensorId}}</td>
+      <td>{{sensor.timestamp}}</td>
+      <td>{{sensor.data}}</td>
     </tr>
+
   </table>
 </div>

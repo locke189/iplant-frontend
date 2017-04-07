@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,  Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -10,10 +10,15 @@ export class ListComponent implements OnInit {
   @Input() title = 'title'
   @Input() textContent = 'text content';
   @Input('data') devices = ['obj1', 'obj2'];
+  @Output() selectedDevice = new EventEmitter()
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectDevice(device) {
+    this.selectedDevice.emit(device.deviceId);
+
+  }
 }

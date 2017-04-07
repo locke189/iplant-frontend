@@ -10,6 +10,7 @@ import { DataService } from '../services/data.service';
 export class DeviceComponent implements OnInit {
 
   deviceIdList = ['No data'];
+  deviceId;
 
   constructor(private dataService: DataService) { }
 

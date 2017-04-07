@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, Input } from '@angular/core';
+
+import { Device } from '../../model/device';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements DoCheck {
 
-  constructor() { }
+  @Input() deviceId ;
+  device: Device ;
 
-  ngOnInit() {
+  constructor(private dataService: DataService) { }
+
+  ngDoCheck() {
+    this.device = this.dataService.getDeviceById(this.deviceId);
   }
 
 }
