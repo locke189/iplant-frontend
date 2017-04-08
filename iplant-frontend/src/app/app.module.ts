@@ -12,14 +12,9 @@ import { DetailsComponent } from './device/details/details.component';
 import { DataComponent } from './device/data/data.component';
 import { HttpService } from './services/http.service';
 import { DataService } from './services/data.service';
+import { environment } from '../environments/environment';
 
-// Must export the config
-export const firebaseConfig = {
-  apiKey: 'AIzaSyCeLjnaoNZ6c9BKkccXt5E0H74DGKJWXek',
-  authDomain: 'testproject-cd274.firebaseapp.com',
-  databaseURL: 'https://testproject-cd274.firebaseio.com',
-  storageBucket: 'testproject-cd274.appspot.com'
-};
+
 
 @NgModule({
   declarations: [
@@ -34,7 +29,7 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [HttpService, DataService],
   bootstrap: [AppComponent]

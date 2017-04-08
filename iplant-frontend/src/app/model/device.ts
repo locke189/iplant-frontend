@@ -1,6 +1,7 @@
 
 import { Sensor } from './sensor';
 import { Actuator } from './actuator';
+import * as moment from 'moment';
 
 export class Device {
   deviceId: string;
@@ -10,7 +11,7 @@ export class Device {
   status: boolean;
   sensors: Sensor[] = []; // this should be of type sensors
   actuators: Actuator[] = [];
-  timestamp: string;
+  timestamp: any;
   image: string;
 
   sensorTextList: string;
@@ -25,7 +26,8 @@ export class Device {
     this.type = settings.type;
     this.enabled = settings.enabled;
     this.status = settings.status;
-    this.timestamp = settings.timestamp;
+    this.timestamp = moment.utc(settings.timestamp, "YYYY-MM-DD hh:mm:ss").utcOffset("-05:00").toString();
+
 
     if(settings.sensors){
       this.sensorTextList = '';
