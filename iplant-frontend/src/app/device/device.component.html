@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-3">
-      <app-list title="My Devices" textContent="List of all available devices" [data]="this.dataService.getDeviceList()" (selectedDevice)="deviceId=$event"></app-list>
+      <app-list title="My Devices" textContent="List of all available devices" [data]="this.dataService.getDeviceList()" (selectedDevice)="onDeviceSelectedFromList($event)"></app-list>
     </div>
     <div class="col-xs-9">
-      <app-details [deviceId]="deviceId"></app-details>
-      <app-data [deviceId]="deviceId"></app-data>
+      <app-details [deviceId]="selectedDeviceId"></app-details>
+      <app-data [deviceId]="selectedDeviceId" (selectedSensor)="selectedSensorId=$event"></app-data>
+      <app-historic [sensorId]="selectedSensorId" [deviceId]="selectedDeviceId"></app-historic>
     </div>
   </div>
 </div>

@@ -49,6 +49,8 @@ export class Device {
   }
 
 
-
+  getSensorById(id: string) {
+    return this.sensors.find( (sensor) => sensor.sensorId === id);
+  }
 
 }

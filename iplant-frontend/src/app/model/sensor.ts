@@ -12,6 +12,9 @@ export class Sensor {
   avgData: number;
   filter: boolean;
   filterSamples: number;
+  dataset: number[] = [];
+  datasetAvg: number[] = [];
+  datasetLabel: string[] = [];
 
   constructor(settings) {
     this.sensorId = settings.id;
@@ -22,6 +25,20 @@ export class Sensor {
 
 
     this.data = settings.data;
+
+    if(settings.dataset){
+      this.dataset = settings.dataset;
+    }
+
+    if(settings.datasetAvg){
+      this.datasetAvg = settings.datasetAvg;
+    }
+
+    if(settings.datasetLabel){
+      this.datasetLabel = settings.datasetLabel.map((label) => {
+        return moment.utc(label, "hh:mm").utcOffset("-05:00").format("HH:mm");
+      });
+    }
 
     // Filter related
     this.avgData = settings.avgData;

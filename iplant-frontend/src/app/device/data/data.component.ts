@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input } from '@angular/core';
+import { Component, DoCheck, Input, Output, EventEmitter } from '@angular/core';
 
 import { Device } from '../../model/device';
 import { DataService } from '../../services/data.service';
@@ -11,6 +11,7 @@ import { DataService } from '../../services/data.service';
 export class DataComponent implements DoCheck {
   @Input() deviceId ;
   device: Device;
+  @Output() selectedSensor = new EventEmitter()
 
   constructor(private dataService: DataService) { }
 
@@ -18,4 +19,7 @@ export class DataComponent implements DoCheck {
     this.device = this.dataService.getDeviceById(this.deviceId);
   }
 
+  onRowClick(sensor){
+    this.selectedSensor.emit(sensor.sensorId);
+  }
 }

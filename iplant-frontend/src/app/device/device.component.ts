@@ -10,7 +10,10 @@ import { DataService } from '../services/data.service';
 export class DeviceComponent implements OnInit {
 
   deviceIdList = ['No data'];
-  deviceId;
+  selectedDeviceId;
+  selectedSensorId;
+
+  menuActive = true;
 
   constructor(private dataService: DataService) { }
 
@@ -18,6 +21,10 @@ export class DeviceComponent implements OnInit {
     this.deviceIdList = this.dataService.getDeviceIdList();
   }
 
-
+  onDeviceSelectedFromList(device){
+    this.selectedDeviceId = device;
+    this.selectedSensorId = null;
+    this.menuActive = false;
+  }
 
 }

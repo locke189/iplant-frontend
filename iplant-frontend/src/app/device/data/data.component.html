@@ -7,7 +7,7 @@
   </div>
 
   <!-- Table -->
-  <table class="table" *ngIf="device">
+  <table class="table table-hover" *ngIf="device">
     <tr>
       <th>Sensor</th>
       <th>ID</th>
@@ -15,7 +15,7 @@
       <th>Value</th>
     </tr>
 
-    <tr *ngFor="let sensor of device.sensors">
+    <tr *ngFor="let sensor of device.sensors" (click)="onRowClick(sensor)">
       <td>{{sensor.type}}</td>
       <td>{{sensor.sensorId}}</td>
       <td>{{sensor.timestamp}}</td>

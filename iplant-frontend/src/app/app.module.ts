@@ -13,6 +13,8 @@ import { DataComponent } from './device/data/data.component';
 import { HttpService } from './services/http.service';
 import { DataService } from './services/data.service';
 import { environment } from '../environments/environment';
+import { HistoricComponent } from './device/historic/historic.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -23,13 +25,15 @@ import { environment } from '../environments/environment';
     DeviceComponent,
     ListComponent,
     DetailsComponent,
-    DataComponent
+    DataComponent,
+    HistoricComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ChartsModule
   ],
   providers: [HttpService, DataService],
   bootstrap: [AppComponent]
