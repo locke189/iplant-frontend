@@ -4,6 +4,18 @@
   </div>
   <div class="panel-body" *ngIf="sensorId">
     <h3>{{sensor.type}}</h3>
+
+    <div class="dropdown" [ngClass]="{open: dropdownOpen}" *ngIf="sensor.historic">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+        (click)="dropdownOpen = !dropdownOpen">
+        {{selectedDataset}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+        <li><a href="#!" role="button" (click)="selectDataset()">Live data</a></li>
+        <li *ngFor="let item of sensor.historic"><a href="#!" (click)="selectDataset(item)" >{{item.date}}</a></li>
+      </ul>
+    </div>
     <canvas baseChart
             [datasets]="ChartData"
             [labels]="ChartLabels"

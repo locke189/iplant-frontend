@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URLSearchParams, Http } from '@angular/http';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Device } from '../model/device';
@@ -10,7 +11,7 @@ export class HttpService {
   data: any[];
 
 
-  constructor(af: AngularFire, private dataService: DataService) {
+  constructor(af: AngularFire, private dataService: DataService, private http:Http) {
     this.query = af.database.list('/devices/');
 
     // subscribe to changes
@@ -26,6 +27,9 @@ getDeviceList(queriedItems) {
   }
 }
 
+getJson(url){
+  return this.http.get(url);
+}
 
 
 }
