@@ -1,8 +1,8 @@
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf="deviceId">
   <div class="panel-heading">
-    <h3 class="panel-title">My Device</h3>
+    <h3 class="panel-title">Information</h3>
   </div>
-  <div class="panel-body" *ngIf="deviceId">
+  <div class="panel-body" >
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
@@ -10,21 +10,20 @@
         </div>
       </div>
       <div class="col-sm-6 col-md-8">
-        <h3><b>Device ID</b> - {{device.deviceId}} </h3>
+        <h3><b>(ID {{device.deviceId}})</b> - {{device.type}} <span class="glyphicon glyphicon-ok text-success"  *ngIf="device.online" aria-hidden="true"></span> <span class="glyphicon glyphicon-remove text-danger" *ngIf="!device.online"  aria-hidden="true"></span></h3>
         <p><b>Status:</b> {{device.status}}</p>
         <p><b>Type:</b> {{device.type}}</p>
-        <p><b>Version:</b> {{device.version}}</p>
         <p><b>Sensors:</b> {{device.sensorTextList}}</p>
         <p><b>Actuators:</b> {{device.actuatorTextList}}</p>
-        <p><b>Last update:</b> {{device.timestamp}}</p>
+        <p><b>Online since:</b> {{device.timestamp}}</p>
       </div>
     </div>
   </div>
-  <div class="panel-body" *ngIf="!deviceId">
-    <div class="row">
-      <div class="col-sm-12 col-md-12">
-        <h3>Please select a device from the list...</h3>
-      </div>
-    </div>
-  </div>
+</div>
+<div class="jumbotron" *ngIf="!deviceId">
+    <h1>
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  IoT Admin Control Center</h1>
+    <p>
+        Select an IoT device from list to start.</p>
+    <p>
 </div>

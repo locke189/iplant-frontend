@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf="sensorId">
   <div class="panel-heading">
     <h3 class="panel-title">Historic Data</h3>
   </div>
@@ -16,6 +16,9 @@
         <li *ngFor="let item of sensor.historic"><a href="#!" (click)="selectDataset(item)" >{{item.date}}</a></li>
       </ul>
     </div>
+
+
+
     <canvas baseChart
             [datasets]="ChartData"
             [labels]="ChartLabels"
@@ -24,8 +27,5 @@
              chartType="line"
     ></canvas>
 
-  </div>
-  <div class="panel-body" *ngIf="!sensorId">
-    <h3>Please select a sensor...</h3>
   </div>
 </div>

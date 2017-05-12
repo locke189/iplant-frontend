@@ -2,10 +2,21 @@
   <div class="panel-heading">
     <h3 class="panel-title">{{title}}</h3>
   </div>
+  <div class="list-group hidden-xs" *ngFor="let device of devices">
+    <a href="#" class="list-group-item" (click)="selectDevice(device)" > <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>  {{device.deviceId}} - {{device.type}}</a>
+  </div>
+
   <div class="panel-body">
-    {{textContent}}
+  <div class="dropdown hidden-sm hidden-md hidden-lg" [ngClass]="{open: dropdownOpen}">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+      (click)="dropdownOpen = !dropdownOpen">
+      {{selectedListItem}}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+      <li *ngFor="let device of devices"><a href="#!" (click)="selectDevice(device)" >{{device.deviceId}} - {{device.type}}</a></li>
+    </ul>
   </div>
-  <div class="list-group" *ngFor="let device of devices">
-    <a href="#" class="list-group-item" (click)="selectDevice(device)" >ID: {{device.deviceId}} - {{device.type}}</a>
-  </div>
+</div>
+
 </div>

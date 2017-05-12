@@ -1,0 +1,25 @@
+<div class="panel panel-default" *ngIf="actuatorId">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{actuator.type}} Actuator Control</h3>
+  </div>
+  <div class="panel-body" *ngIf="actuatorId">
+    <p>Select an action.</p>
+
+    <div class="dropdown" [ngClass]="{open: dropdownOpen}" *ngIf="!isCamera()">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+        (click)="dropdownOpen = !dropdownOpen">
+        {{selectedAction}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+        <li *ngFor="let action of actions"><a href="#!" (click)="selectAction(action)" >{{action}}</a></li>
+      </ul>
+
+    <button type="button" class="btn btn-primary" (disabled)="actuator.busy" (click)="executeAction()">Execute </button>
+
+    </div>
+
+    <app-camera [actuator]="actuator" [actuatorId]="actuatorId" [deviceId]="deviceId" *ngIf="isCamera()"> </app-camera>
+
+  </div>
+</div>

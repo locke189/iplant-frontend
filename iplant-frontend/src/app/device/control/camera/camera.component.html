@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="col-xs-12 col-sm-6 text-center" >
+    <img [src]="image" alt="" class="img-responsive img-rounded">
+    <hr>
+    <div class="center-block">
+      <button type="button" class="btn btn-primary" (click)="captureAction()">Capture</button>
+      <button type="button" class="btn btn-primary "(click)="setPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? 'disabled' : ''">Start Timer</button>
+      <button type="button" class="btn btn-danger "(click)="stopPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? '' : 'disabled'">Stop Timer</button>
+    </div>
+
+    <hr>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="brightness">Brightness({{actuator.settings.brightness}})</label>
+        <input type="range" min="0" max="100" step="1" name="brightness" [(ngModel)]="actuator.settings.brightness"  (change)="setBrightness()"/>
+      </div>
+      <div class="form-group">
+        <label for="contrast">Contrast({{actuator.settings.contrast}})</label>
+        <input type="range" min="-100" max="100" step="1" name="contrast" [(ngModel)]="actuator.settings.contrast" (change)="setContrast()"/>
+      </div>
+      <div class="form-group">
+        <label for="sharpness">Sharpness({{actuator.settings.sharpness}})</label>
+        <input type="range" min="-100" max="100" step="1" name="sharpness" [(ngModel)]="actuator.settings.sharpness" (change)="setSharpness()"/>
+      </div>
+      <div class="form-group">
+        <label for="saturation">Saturation({{actuator.settings.saturation}})</label>
+        <input type="range" min="-100" max="100" step="1" name="saturation" [(ngModel)]="actuator.settings.saturation" (change)="setSaturation()"/>
+      </div>
+      <div class="form-group">
+        <label for="ISO">ISO({{actuator.settings.iso}})</label>
+        <input type="range" min="0" max="1600" step="1" name="iso" [(ngModel)]="actuator.settings.iso" (change)="setIso()"/>
+      </div>
+      <div class="form-group">
+        <label for="vflip">Vertical Flip</label>
+        <input type="checkbox" [checked]="actuator.settings.vflip" name="vflip" [(ngModel)]="actuator.settings.vflip" (change)="setVflip()"/>
+      </div>
+      <div class="form-group">
+        <label for="hflip">Horizontal Flip</label>
+        <input type="checkbox" [checked]="actuator.settings.hflip" name="hflip" [(ngModel)]="actuator.settings.hflip" (change)="setHflip()"/>
+      </div>
+      <div class="form-group">
+        <label for="timer">Timer(minutes)</label>
+        <input type="number" [value]="actuator.settings.timer" max="100000" min="1" name="timer" [(ngModel)]="actuator.settings.timer" (change)="setTimer()"/>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
