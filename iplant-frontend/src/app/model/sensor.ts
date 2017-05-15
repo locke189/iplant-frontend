@@ -43,16 +43,17 @@ export class Sensor {
     this.data = settings.data;
 
     if (settings.dataset) {
-      this.dataset = settings.dataset;
+      this.dataset = settings.dataset.map((data) => {return Number(data)});
     }
 
     if (settings.datasetAvg) {
-      this.datasetAvg = settings.datasetAvg;
+      this.datasetAvg = settings.datasetAvg.map((data) => {return Number(data)});;
     }
 
     if (settings.datasetLabel) {
       this.datasetLabel = settings.datasetLabel.map((label) => {
-        return moment.utc(label, 'HH:mm').utcOffset('-05:00').format('HH:mm');
+        //return moment.utc(label, 'HH:mm').utcOffset('-05:00').format('HH:mm');
+        return moment.utc(label, 'YYYY-MM-DD HH:mm:ss').utcOffset('-05:00').toDate();
       });
     }
 

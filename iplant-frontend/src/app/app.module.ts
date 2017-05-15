@@ -21,6 +21,8 @@ import { ControlComponent } from './device/control/control.component';
 import { DropboxComponent } from './device/dropbox/dropbox.component';
 import { CameraComponent } from './device/control/camera/camera.component';
 import { BaseComponent } from './device/control/base/base.component';
+import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
+import { LineChartComponent } from './shared/line-chart/line-chart.component';
 
 
 
@@ -38,7 +40,9 @@ import { BaseComponent } from './device/control/base/base.component';
     ControlComponent,
     DropboxComponent,
     CameraComponent,
-    BaseComponent
+    BaseComponent,
+    BarChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
