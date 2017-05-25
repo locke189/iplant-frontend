@@ -25,7 +25,6 @@ onResize(event) {
     if(JSON.stringify(this._datasets)!==JSON.stringify(datasets)){
       this._datasets = datasets;
       if(this.chart){
-                console.log("OH NO!")
                  this.updateData();
       }
     }
@@ -36,7 +35,7 @@ onResize(event) {
 
 
 
-  private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
+  private margin: any = { top: 20, bottom: 20, left: 20, right: 50};
   private width: number;
   private height: number;
   private barPadding: number = 1;
@@ -48,7 +47,11 @@ onResize(event) {
   private yAxis:any;
   private colors:Array<any>;
   private maxSet:Array<any>;
+
+  private legend = ["Data","Average"];
+
   constructor() { }
+
 
   ngOnInit() {
     this.colors = ["green", "blue", "red", "yellow"];
@@ -82,6 +85,10 @@ onResize(event) {
     // Select the section we want to apply our changes to
     let svg = d3.select(element).transition();
 
+    svg.select('svg')
+      .duration(750)
+      .attr('width', element.offsetWidth)
+      .attr('height', element.offsetHeight);
 
     this._datasets.forEach((dataset,i) => {
       // Make the changes
@@ -96,6 +103,13 @@ onResize(event) {
         svg.select(".axis") // change the y axis
             .duration(750)
             .call(this.yAxis);
+
+        svg.selectAll('.legend')
+          .duration(750)
+          .attr("transform", (d, i) => {
+            const horz = element.offsetWidth - 90;
+            const vert = (this.height / 2 - 50) + (i * 18);
+            return 'translate(' + horz + ',' + vert + ')'; });
   }
 
   createChart() {
@@ -127,11 +141,33 @@ onResize(event) {
         svg.append('path')
           .attr('d', line(dataset))
           .attr('stroke', this.colors[i])
+          .attr("data-legend", (d,i) => { return this.legend[i]})
           .attr('stroke-width', "2")
           .attr('class', "line" + i)
           .attr('fill', 'none');
       });
 
+    let legends = svg.selectAll(".legend")
+    .data(this.legend)
+    .enter()
+    .append('g')
+    .attr("class","legend")
+    .attr("transform", (d, i) => {
+        const horz = element.offsetWidth - 90;
+        const vert = (this.height / 2 - 100) + (i * 18);
+        return 'translate(' + horz + ',' + vert + ')'; })
+    .style("font-size","12px");
+
+    legends.append('rect')
+    .attr('width', '14' )
+    .attr('height', '14' )
+    .style('fill', (d, i) => {return this.colors[i]})
+    .style('stroke', (d, i) => {return this.colors[i]});
+
+    legends.append('text')
+    .attr('x', '18')
+    .attr('y', '10')
+    .text((d, i) => {return d});
 
 
 
