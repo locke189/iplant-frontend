@@ -15,6 +15,14 @@ import { DataService } from './services/data.service';
 import { environment } from '../environments/environment';
 import { HistoricComponent } from './device/historic/historic.component';
 import { ChartsModule } from 'ng2-charts';
+import { SensorComponent } from './device/sensor/sensor.component';
+import { ActuatorComponent } from './device/actuator/actuator.component';
+import { ControlComponent } from './device/control/control.component';
+import { DropboxComponent } from './device/dropbox/dropbox.component';
+import { CameraComponent } from './device/control/camera/camera.component';
+import { BaseComponent } from './device/control/base/base.component';
+import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
+import { LineChartComponent } from './shared/line-chart/line-chart.component';
 
 
 
@@ -26,7 +34,15 @@ import { ChartsModule } from 'ng2-charts';
     ListComponent,
     DetailsComponent,
     DataComponent,
-    HistoricComponent
+    HistoricComponent,
+    SensorComponent,
+    ActuatorComponent,
+    ControlComponent,
+    DropboxComponent,
+    CameraComponent,
+    BaseComponent,
+    BarChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

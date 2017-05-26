@@ -12,6 +12,7 @@ export class DeviceComponent implements OnInit {
   deviceIdList = ['No data'];
   selectedDeviceId;
   selectedSensorId;
+  selectedActuatorId;
 
   menuActive = true;
 

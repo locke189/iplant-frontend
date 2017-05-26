@@ -1,31 +1,22 @@
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf="sensorId">
   <div class="panel-heading">
     <h3 class="panel-title">Historic Data</h3>
   </div>
   <div class="panel-body" *ngIf="sensorId">
-    <h3>{{sensor.type}}</h3>
 
-    <div class="dropdown" [ngClass]="{open: dropdownOpen}" *ngIf="sensor.historic">
+    <h3>{{sensor.type}}</h3>
+    <app-line-chart  [datasets]="datasets" [labels]="datasetLabel" ></app-line-chart>
+
+    <div class="dropdown" [ngClass]="{open: dropdownOpen}">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
         (click)="dropdownOpen = !dropdownOpen">
-        {{selectedDataset}}
+        {{selectedListItem}}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" >
-        <li><a href="#!" role="button" (click)="selectDataset()">Live data</a></li>
-        <li *ngFor="let item of sensor.historic"><a href="#!" (click)="selectDataset(item)" >{{item.date}}</a></li>
+        <li> <a href="#!" (click)="onLiveDataSelected()" >Live Data!</a></li>
+        <li *ngFor="let file of sensor.historic"><a href="#!" (click)="onDataSelected(file)" >{{file.date}}</a></li>
       </ul>
     </div>
-    <canvas baseChart
-            [datasets]="ChartData"
-            [labels]="ChartLabels"
-            [options]="ChartOptions"
-            [colors]="ChartColor"
-             chartType="line"
-    ></canvas>
-
-  </div>
-  <div class="panel-body" *ngIf="!sensorId">
-    <h3>Please select a sensor...</h3>
   </div>
 </div>

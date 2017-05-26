@@ -1,0 +1,31 @@
+<div class="panel panel-default" *ngIf="device">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actuators</h3>
+  </div>
+  <div class="panel-body">
+    <p>Available actuators in your device. Click for more details.</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-hover" *ngIf="device.actuators">
+    <tr>
+      <th>Type</th>
+      <th>ID</th>
+      <th>Timestamp</th>
+      <th>Value</th>
+    </tr>
+
+    <tr *ngFor="let actuator of device.actuators" (click)="onRowClick(actuator)">
+      <td>{{actuator.type}}</td>
+      <td>{{actuator.actuatorId}}</td>
+      <td>{{actuator.timestamp}}</td>
+      <td *ngIf="!(actuator.type==='CAM')">{{actuator.data}}</td>
+      <td *ngIf="(actuator.type==='CAM')"> <a href="{{actuator.data}}" target="_blank">Image</a></td>
+    </tr>
+
+
+
+  </table>
+
+
+</div>
