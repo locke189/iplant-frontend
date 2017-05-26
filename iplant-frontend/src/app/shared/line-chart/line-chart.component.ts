@@ -10,17 +10,13 @@ import * as moment from 'moment';
 export class LineChartComponent implements OnInit, OnChanges {
   _datasets:Array<any>;
 
-  @HostListener('window:resize', ['$event'])
+@HostListener('window:resize', ['$event'])
 onResize(event) {
   this.updateData();
  }
 
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() set datasets(datasets: Array<any>){
-    console.log("old value:");
-    console.log(this._datasets);
-    console.log("new value:");
-    console.log(datasets);
 
     if(JSON.stringify(this._datasets)!==JSON.stringify(datasets)){
       this._datasets = datasets;
@@ -31,7 +27,17 @@ onResize(event) {
 
   };
 
-  @Input() private labels: Array<any>;
+  _labels: Array<any>;
+
+  @Input() set labels(labels){
+
+    if(JSON.stringify(this._labels)!==JSON.stringify(labels)){
+      this._labels = labels;
+      if(this.chart){
+                 this.updateData();
+      }
+    }
+  };
 
 
 
@@ -73,12 +79,12 @@ onResize(event) {
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
 
     this.maxValues(this._datasets);
-    this.xScale.domain([this.labels[0], this.labels[this.labels.length - 1]]).range([this.padding, this.width - this.padding]);
+    this.xScale.domain([this._labels[0], this._labels[this._labels.length - 1]]).range([this.padding, this.width - this.padding]);
     this.yScale.domain([0, d3.max(this.maxSet, d => d)])
                     .range([this.height - this.padding, this.padding ]);
 
     let line = d3.line<any>().curve(d3.curveBasis)
-    .x((d, i) => { return this.xScale(this.labels[i]); })
+    .x((d, i) => { return this.xScale(this._labels[i]); })
     .y((d) => { return  this.yScale(d) ; });
 
 
@@ -117,7 +123,7 @@ onResize(event) {
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
 
-    this.xScale = d3.scaleTime().domain([this.labels[0], this.labels[this.labels.length - 1]]).range([this.padding, this.width - this.padding]);
+    this.xScale = d3.scaleTime().domain([this._labels[0], this._labels[this._labels.length - 1]]).range([this.padding, this.width - this.padding]);
 
     this.maxValues(this._datasets);
 
@@ -134,7 +140,7 @@ onResize(event) {
       .attr('height', element.offsetHeight);
 
       let line = d3.line<any>().curve(d3.curveBasis)
-      .x((d, i) => { return this.xScale(this.labels[i]); })
+      .x((d, i) => { return this.xScale(this._labels[i]); })
       .y((d) => { return  this.yScale(d) ; });
 
       this._datasets.forEach( (dataset,i) => {

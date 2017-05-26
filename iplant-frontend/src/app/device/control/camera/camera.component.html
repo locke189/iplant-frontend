@@ -4,8 +4,8 @@
     <hr>
     <div class="center-block">
       <button type="button" class="btn btn-primary" (click)="captureAction()">Capture</button>
-      <button type="button" class="btn btn-primary "(click)="setPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? 'disabled' : ''">Start Timer</button>
-      <button type="button" class="btn btn-danger "(click)="stopPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? '' : 'disabled'">Stop Timer</button>
+      <button type="button" class="btn btn-primary " (click)="setPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? '' : 'disabled'">Start Timer</button>
+      <button type="button" class="btn btn-danger " (click)="stopPeriodicUpdates()" [disabled]="actuator.settings.periodicUpdates ? '' : 'disabled'">Stop Timer</button>
     </div>
 
     <hr>

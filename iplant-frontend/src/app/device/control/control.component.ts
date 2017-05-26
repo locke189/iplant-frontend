@@ -41,7 +41,6 @@ export class ControlComponent implements DoCheck {
   selectAction(value) {
     this.dropdownOpen = !this.dropdownOpen;
     this.selectedAction = value;
-    console.log(this.selectedAction);
   }
 
   executeAction(){
